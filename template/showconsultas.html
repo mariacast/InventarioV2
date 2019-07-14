@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block titulo %}Consulta{% endblock  %}
+{% block content %}
+
+<div class="container-fluid">
+
+          <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Recursos de {{ U.nombres }} {{ U.apellidos }}</h1><br><br>
+    <a href="/AsignacionCreate" class="btn btn-primary"><i class="fas fa-edit"></i>  Asignar</a><a href="/AsignacionCreate" class="btn btn-primary"><i class="fas fa-exchange-alt"></i>  Trasladar</a>
+
+  </div>
+<div class="container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Recurso</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Marca</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in list %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ row.nombre }}</td>
+                <td>{{ row.categoria }}</td>
+                <td>{{ row.marca }}</td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- Content Row -->
+
+
+        </div>
+{% endblock %}

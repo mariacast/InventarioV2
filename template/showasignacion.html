@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block titulo %}Consultar{% endblock  %}
+{% block content %}
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Consultar Asignaciónes</h1><br><br>
+    <a href="#" class="btn btn-primary"><i class="fas fa-edit"></i>  Asignar</a><a href="#" class="btn btn-primary"><i class="fas fa-exchange-alt"></i>  Trasladar</a>
+
+  </div>
+
+  <!-- Content Row -->
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in users %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ row.nombres }}</td>
+        <td>{{ row.apellidos }}</td>
+        <td><button type="button" class="btn btn-primary" onclick="consultar('{{ row.id }}');" >Consultar</button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!-- Content Row -->
+  <form style="display:none" action="{% url 'consultarrecursos' %}"  method=post name="fconsulta" id="fconsulta">
+      {% csrf_token %}
+      <input type="hidden" name="id_user" id="id_user" value="">
+  </form>
+
+</div>
+<!-- /.container-fluid -->
+</div>
+<script type="text/javascript">
+
+    function gId(id)
+    {
+        return document.getElementById(id);
+    }
+    function consultar(id_us) {
+
+      document.getElementById("id_user").value = id_us;
+      gId("fconsulta").submit();
+}
+  </script>
+{% endblock %}

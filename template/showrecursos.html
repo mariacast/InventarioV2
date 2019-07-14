@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block titulo %}Recursos{% endblock  %}
+{% block content %}
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Lista Recursos</h1>
+    <a href="/RecursoCreate" class="btn btn-primary"><i class="fas fa-fw fa-user "></i> Nuevo Recurso</a>
+
+  </div>
+<div class="container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Serie</th>
+                <th scope="col"colspan="2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in object_list %}
+              <tr>
+                <th scope="row">{{ row.codigo }}</th>
+                <td>{{ row.nombre }}</td>
+                <td>{{ row.categoria }}</td>
+                <td>{{ row.marca }}</td>
+                <td>{{ row.serie }}</td>
+                <td><a class="btn btn-primary" href="{%url 'RecursoUpdate' row.id %}" >Editar</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- Content Row -->
+
+
+        </div>
+        <!-- /.container-fluid -->
+</div>
+{% endblock %}
